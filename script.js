@@ -18,11 +18,9 @@ function draw() {
 
       if (map[y][x] === 1) ctx.fillStyle = "#000";      // Wand
       else if (map[y][x] === 2) ctx.fillStyle = "#c90"; // Tür
-      else ctx.fillStyle = "#eee";                      // Leerfläche
+      else ctx.fillStyle = "#fff";                      // Leerfläche (clean weiß)
 
       ctx.fillRect(x * pixelSize, y * pixelSize, pixelSize, pixelSize);
-      ctx.strokeStyle = "#999";
-      ctx.strokeRect(x * pixelSize, y * pixelSize, pixelSize, pixelSize);
     }
   }
 }
