@@ -1,29 +1,87 @@
 <!DOCTYPE html>
-<html>
+<html lang="de">
 <head>
 <meta charset="UTF-8">
-<title>Grundriss Scanner</title>
-<script src="ImageTracer.js"></script>
+<title>Grundriss automatisch digitalisieren</title>
+
 <style>
-  body { background:#f5f5f5; font-family:sans-serif; }
-  #output svg { width: 100%; height: auto; }
+    body {
+        background: #f5f5f5;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+        text-align: center;
+    }
+
+    #loading {
+        margin-top: 40px;
+        display: none;
+    }
+
+    /* Spinner */
+    .spinner {
+        width: 40px;
+        height: 40px;
+        border: 4px solid #ddd;
+        border-top-color: #333;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin: auto;
+    }
+
+    @keyframes spin {
+        to { transform: rotate(360deg); }
+    }
+
+    /* Fortschrittsbalken */
+    #barbg {
+        width: 220px;
+        height: 12px;
+        background: #ccc;
+        margin: 10px auto;
+        border-radius: 6px;
+    }
+
+    #bar {
+        width: 0%;
+        height: 100%;
+        background: #4caf50;
+        border-radius: 6px;
+        transition: width 0.2s;
+    }
+
+    #output svg {
+        width: 100%;
+        height: auto;
+        margin-top: 20px;
+    }
 </style>
+
 </head>
 <body>
 
-<h2>Grundriss automatisch digitalisieren</h2>
+<h1>Grundriss automatisch digitalisieren</h1>
 
-<div id="output">Lade SVG…</div>
+<p>Dein Grundriss wird analysiert und als SVG dargestellt.</p>
 
-<script>
-ImageTracer.imageToSVG(
-  "assats/grundriss.jpg",     // dein Bild im Repo
-  function(svgstr){
-    document.getElementById('output').innerHTML = svgstr;
-  },
-  { ltres:1, qtres:1, pathomit:4 } // Qualität/Glättung anpassen
-);
-</script>
+<!-- Ladeanzeige -->
+<div id="loading">
+    <div class="spinner"></div>
+    <p>Digitalisiere Grundriss…</p>
+
+    <div id="barbg">
+        <div id="bar"></div>
+    </div>
+</div>
+
+<!-- Platz wo SVG erscheint -->
+<div id="output">SVG wird geladen…</div>
+
+<!-- ImageTracer Library -->
+<script src="ImageTracer.js"></script>
+
+<!-- eigenes Script -->
+<script src="script.js"></script>
 
 </body>
 </html>
