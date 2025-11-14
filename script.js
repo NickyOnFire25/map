@@ -13,7 +13,7 @@ let fakeLoading = setInterval(() => {
 
 // Grundriss-Bild -> SVG
 ImageTracer.imageToSVG(
-    "assats/grundriss.jpg",
+    "plan.jpg",
     function(svgstr) {
 
         // Fake-Progress beenden
