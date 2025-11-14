@@ -3,15 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <title>Pixelart Grundriss</title>
+<style>
+  body {
+    margin: 0;
+    background: #f4f4f4; /* optional: heller Hintergrund */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  canvas {
+    image-rendering: pixelated; /* sorgt für klare Pixel */
+    background: transparent;    /* kein Hintergrund, keine Umrandung */
+  }
+</style>
 </head>
 <body>
 
-<h2>Pixelart Grundriss (Canvas Beispiel)</h2>
+<canvas id="map" width="400" height="400"></canvas>
 
-<!-- Das Zeichenfeld -->
-<canvas id="map" width="400" height="400" style="border:1px solid #000;"></canvas>
-
-<!-- Verknüpft die JavaScript Datei -->
 <script src="script.js"></script>
 
 </body>
