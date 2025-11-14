@@ -33,7 +33,7 @@ ImageTracer.imageToSVG(
 
     // Einstellungen (kannst du bei Bedarf anpassen)
     {
-        ltres: 1,
+        ltres: 5,
         qtres: 1,
         pathomit: 4
     }
