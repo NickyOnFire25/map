@@ -1,28 +1,40 @@
-const c = document.getElementById("map");
-const ctx = c.getContext("2d");
+// Ladeanzeige sichtbar machen
+document.getElementById("loading").style.display = "block";
 
-const pixelSize = 20;
+// Fake-Progress-System
+let progress = 0;
 
-// Beispiel-Grundriss (0=leer, 1=Wand, 2=Tür)
-const map = [
-  [1,1,1,1,1,1,1,1,1,1],
-  [1,0,0,0,0,0,0,0,0,1],
-  [1,0,0,0,2,0,0,0,0,1],
-  [1,0,0,0,0,0,0,0,0,1],
-  [1,1,1,1,1,1,1,1,1,1]
-];
+let fakeLoading = setInterval(() => {
+    progress += Math.random() * 10;
+    if (progress > 90) progress = 90; // Nie über 90%
+    document.getElementById("bar").style.width = progress + "%";
+}, 300);
 
-function draw() {
-  for (let y = 0; y < map.length; y++) {
-    for (let x = 0; x < map[y].length; x++) {
 
-      if (map[y][x] === 1) ctx.fillStyle = "#000";      // Wand
-      else if (map[y][x] === 2) ctx.fillStyle = "#c90"; // Tür
-      else ctx.fillStyle = "#fff";                      // Leerfläche (clean weiß)
+// Grundriss-Bild -> SVG
+ImageTracer.imageToSVG(
+    "assats/grundriss.jpg",
+    function(svgstr) {
 
-      ctx.fillRect(x * pixelSize, y * pixelSize, pixelSize, pixelSize);
+        // Fake-Progress beenden
+        clearInterval(fakeLoading);
+
+        // Jetzt sofort voll machen
+        document.getElementById("bar").style.width = "100%";
+
+        // kurze wartezeit für Effekt
+        setTimeout(() => {
+            document.getElementById("loading").style.display = "none";
+
+            // SVG einfügen
+            document.getElementById("output").innerHTML = svgstr;
+        }, 300);
+    },
+
+    // Einstellungen (kannst du bei Bedarf anpassen)
+    {
+        ltres: 1,
+        qtres: 1,
+        pathomit: 4
     }
-  }
-}
-
-draw();
+);
