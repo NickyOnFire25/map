@@ -35,7 +35,7 @@ ImageTracer.imageToSVG(
     {
         ltres: 1,
         qtres: 1,
-        pathomit: 1,
-        scale: 1
+        pathomit: 1
+        
     }
 );
