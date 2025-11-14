@@ -1,28 +1,29 @@
 <!DOCTYPE html>
-<html lang="de">
+<html>
 <head>
 <meta charset="UTF-8">
-<title>Pixelart Grundriss</title>
+<title>Grundriss Scanner</title>
+<script src="ImageTracer.js"></script>
 <style>
-  body {
-    margin: 0;
-    background: #f4f4f4; /* optional: heller Hintergrund */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
-  canvas {
-    image-rendering: pixelated; /* sorgt für klare Pixel */
-    background: transparent;    /* kein Hintergrund, keine Umrandung */
-  }
+  body { background:#f5f5f5; font-family:sans-serif; }
+  #output svg { width: 100%; height: auto; }
 </style>
 </head>
 <body>
 
-<canvas id="map" width="400" height="400"></canvas>
+<h2>Grundriss automatisch digitalisieren</h2>
 
-<script src="script.js"></script>
+<div id="output">Lade SVG…</div>
+
+<script>
+ImageTracer.imageToSVG(
+  "assets/grundriss.jpg",     // dein Bild im Repo
+  function(svgstr){
+    document.getElementById('output').innerHTML = svgstr;
+  },
+  { ltres:1, qtres:1, pathomit:4 } // Qualität/Glättung anpassen
+);
+</script>
 
 </body>
 </html>
